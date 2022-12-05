@@ -54,4 +54,4 @@ for n in range(100, 1, -1):
         b[1] = ret_list_next_num[1]
 
 print(f"\n\n\nNumber {a[0]} has the maximum number of elements ({a[1]}) in collatz list")
-print(f"Number {b[0]} has the largest element ({b[1]}) in collatz lists for numbers 1-100")
+print(f"Number {b[0]} has the largest element ({b[1]}) in collatz lists for numbers 1-100\n\n")
