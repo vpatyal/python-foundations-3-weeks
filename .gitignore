@@ -18,3 +18,9 @@ project/
 
 # Environment variables
 .env
+
+# Data files
+apis.csv
+
+#config files
+config.json
