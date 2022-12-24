@@ -41,12 +41,9 @@ def get_weather_details(latitude, longitude):
     weather_api_data = json.loads(response_openMeteo_api.text)
 
     if response_openMeteo_api.status_code == 200:
-        weather_desc = get_weather_desc(
-            weather_api_data['daily']['weathercode'][0])
-        max_temp_in_c = f_to_c(
-            weather_api_data['daily']['temperature_2m_max'][0])
-        min_temp_in_c = f_to_c(
-            weather_api_data['daily']['temperature_2m_min'][0])
+        weather_desc = get_weather_desc(weather_api_data['daily']['weathercode'][0])
+        max_temp_in_c = f_to_c(weather_api_data['daily']['temperature_2m_max'][0])
+        min_temp_in_c = f_to_c(weather_api_data['daily']['temperature_2m_min'][0])
         if weather_desc != 'NotAvailable':
             print(f"Weather             ==> {weather_desc}")
         print(f"Date                : {start_date}")
@@ -108,8 +105,11 @@ def send_email(msgContent):
     msg["from"] = "sujanianvp@gmail.com"
     msg["Subject"] = f"Daily Weather report for {date.today()}"
     msg.set_content(msgContent)
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login("sujanianvp@gmail.com", "hzenesxislxwfoxy")
+    config_file = open("C:\\Users\\vpatyal\\Dropbox\\learn\\repos\\python-foundations-3-weeks\\homework\\config.json")
+    gmail_cfg = json.load(config_file)
+    print(gmail_cfg)
+    with smtplib.SMTP_SSL(gmail_cfg["server"], gmail_cfg["port"]) as smtp:
+        smtp.login(gmail_cfg["email"], gmail_cfg["pwd"])
         smtp.send_message(msg)   
         print("Email sent ! ")
 
