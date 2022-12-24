@@ -23,4 +23,4 @@ project/
 apis.csv
 
 #config files
-config.json
+*.json
